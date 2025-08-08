@@ -35,7 +35,7 @@ onMounted(() => {
         wsPort: 8080,
         // wsHost: window.location.hostname,
         // wsHost: new URL(import.meta.env.VITE_API_BASE_URL).hostname,
-        wsHost: import.meta.env.WEBSOCKET_BASE_URL,
+        wsHost: import.meta.env.VITE_WEBSOCKET_BASE_URL,
         forceTLS: false,
         disableStats: true,
         enabledTransports: ['ws', 'wss']
