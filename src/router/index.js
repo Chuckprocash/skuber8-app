@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import store from '../store';
+// import { useStore } from 'vuex';
 import axiosClient from '../axiosClient';
 
 import HomeView from '../views/HomePage.vue';
@@ -33,27 +34,38 @@ const router = createRouter({
   routes,
 })
 
-// router.beforeEach((to, from) => {
-//   if(!store.state.token && to.name !== 'Login'){
-//     return { name: Login};
-//   }else if(to.name !== 'Login'){
-//     try {
-//       axiosClient.get('/api/user', {
-//         headers: {
-//           'Authorization': `Bearer ${store.state.token}`
-//         },
-//       })
-//       .then((response) => { console.log(response) })
-//       .catch((error) => { 
-//         console.log(error)
-//         store.state.token = null;
-//         return { name: Login};
-//       })
-//     } catch (error) {
-//       //
-//     }
-//   }
-// });
+router.beforeEach(async (to, from) => {
+  // If no token and not going to login, redirect to login
+  if (!store.state.token && to.name !== 'Login') {
+    return { name: 'Login' };
+  }
+  
+  // If going to login page, allow navigation
+  if (to.name === 'Login') {
+    return true;
+  }
+  
+  // Verify token is still valid
+  try {
+    await axiosClient.get('/api/user', {
+      headers: {
+        'Authorization': `Bearer ${store.state.token}`
+      }
+    });
+    
+    // Token is valid, allow navigation
+    return true;
+    
+  } catch (error) {
+    console.log('Token validation failed:', error);
+    
+    // Clear invalid token
+    store.state.token = null;
+    
+    // Redirect to login
+    return { name: 'Login' };
+  }
+});
 
 
 export default router;
