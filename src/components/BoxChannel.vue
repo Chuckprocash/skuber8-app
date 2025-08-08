@@ -34,7 +34,7 @@ onMounted(() => {
         cluster: 'mt1',
         wsPort: 8080,
         // wsHost: window.location.hostname,
-        wsHost: import.meta.env.VITE_API_BASE_URL,
+        wsHost: new URL(import.meta.env.VITE_API_BASE_URL).hostname,
         forceTLS: false,
         disableStats: true,
         enabledTransports: ['ws', 'wss']
