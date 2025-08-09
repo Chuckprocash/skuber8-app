@@ -114,7 +114,7 @@
         wssPort: import.meta.env.VITE_WEBSOCKET_PORT,
         wsHost: import.meta.env.VITE_WEBSOCKET_HOST,
         // wsHost: window.location.hostname,
-        forceTLS: true,
+        forceTLS: false,
         disableStats: true,
         enabledTransports: ['ws', 'wss']
     });
