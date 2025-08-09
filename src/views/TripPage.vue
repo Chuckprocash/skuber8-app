@@ -111,9 +111,10 @@
         key: 'monkey',
         cluster: 'mt1',
         wsPort: import.meta.env.VITE_WEBSOCKET_PORT,
+        wssPort: import.meta.env.VITE_WEBSOCKET_PORT,
         wsHost: import.meta.env.VITE_WEBSOCKET_HOST,
         // wsHost: window.location.hostname,
-        forceTLS: false,
+        forceTLS: true,
         disableStats: true,
         enabledTransports: ['ws', 'wss']
     });

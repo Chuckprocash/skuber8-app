@@ -33,10 +33,11 @@ onMounted(() => {
         key: 'monkey',
         cluster: 'mt1',
         wsPort: import.meta.env.VITE_WEBSOCKET_PORT,
+        wssPort: import.meta.env.VITE_WEBSOCKET_PORT,
         // wsHost: window.location.hostname,
         // wsHost: new URL(import.meta.env.VITE_API_BASE_URL).hostname,
         wsHost: import.meta.env.VITE_WEBSOCKET_HOST,
-        forceTLS: false,
+        forceTLS: true,
         disableStats: true,
         enabledTransports: ['ws', 'wss']
     });
