@@ -32,10 +32,10 @@ onMounted(() => {
         broadcaster: 'pusher',
         key: 'monkey',
         cluster: 'mt1',
-        wsPort: 8080,
+        wsPort: import.meta.env.VITE_WEBSOCKET_PORT,
         // wsHost: window.location.hostname,
         // wsHost: new URL(import.meta.env.VITE_API_BASE_URL).hostname,
-        wsHost: import.meta.env.VITE_WEBSOCKET_BASE_URL,
+        wsHost: import.meta.env.VITE_WEBSOCKET_HOST,
         forceTLS: false,
         disableStats: true,
         enabledTransports: ['ws', 'wss']
